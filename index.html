@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>给你的小惊喜</title>
+    <title>给你的小彩蛋</title>
     <style>
         * {
             margin: 0;
@@ -35,6 +35,8 @@
             font-size: 48px;
             margin-bottom: 30px;
             color: #666;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in forwards;
         }
 
         h1 {
@@ -43,6 +45,8 @@
             margin-bottom: 40px;
             font-weight: normal;
             line-height: 1.6;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in 0.3s forwards;
         }
 
         .message {
@@ -55,6 +59,25 @@
 
         .message p {
             margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in forwards;
+        }
+
+        .message p:nth-child(1) { animation-delay: 0.6s; }
+        .message p:nth-child(2) { animation-delay: 0.9s; }
+        .message p:nth-child(3) { animation-delay: 1.2s; }
+        .message p:nth-child(4) { animation-delay: 1.5s; }
+        .message p:nth-child(5) { animation-delay: 1.8s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .highlight {
@@ -73,12 +96,16 @@
             color: #bbb;
             font-size: 14px;
             letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in 2.1s forwards;
         }
 
         .date {
             color: #ccc;
             font-size: 12px;
             margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in 2.4s forwards;
         }
 
         @media (max-width: 600px) {
