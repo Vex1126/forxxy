@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💕 给你的小惊喜</title>
+    <title>给你的小惊喜</title>
     <style>
         * {
             margin: 0;
@@ -13,87 +13,61 @@
 
         body {
             font-family: 'Arial', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f5f5f5;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            padding: 20px;
         }
 
         .container {
             max-width: 600px;
-            width: 90%;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            padding: 50px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .pet-icon {
             font-size: 48px;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+            margin-bottom: 30px;
+            color: #666;
         }
 
         h1 {
-            color: #764ba2;
-            font-size: 24px;
-            margin-bottom: 30px;
+            color: #333;
+            font-size: 22px;
+            margin-bottom: 40px;
             font-weight: normal;
             line-height: 1.6;
         }
 
         .message {
             color: #555;
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 2;
             text-align: left;
-            padding: 0 20px;
+            margin-bottom: 30px;
         }
 
         .message p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .highlight {
             color: #764ba2;
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        .signature {
-            margin-top: 40px;
-            color: #888;
-            font-style: italic;
-            font-size: 16px;
+            font-weight: 500;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            margin: 30px 0;
         }
 
         .blessing {
-            margin-top: 50px;
+            margin-top: 60px;
             padding-top: 30px;
             border-top: 1px solid #eee;
             color: #bbb;
@@ -101,69 +75,32 @@
             letter-spacing: 2px;
         }
 
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-heart {
-            position: absolute;
-            font-size: 30px;
-            opacity: 0;
-            animation: float 6s infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
         .date {
-            color: #999;
-            font-size: 14px;
-            margin-top: 30px;
+            color: #ccc;
+            font-size: 12px;
+            margin-top: 20px;
         }
 
         @media (max-width: 600px) {
             .container {
-                padding: 30px 20px;
+                padding: 40px 30px;
             }
             
             h1 {
-                font-size: 26px;
+                font-size: 20px;
             }
             
             .message {
-                font-size: 16px;
-                padding: 0 10px;
+                font-size: 15px;
             }
             
-            .heart-container {
-                font-size: 60px;
+            .pet-icon {
+                font-size: 40px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-hearts" id="floatingHearts"></div>
-    
     <div class="container">
         <div class="pet-icon">( 汪！• ᴥ • )</div>
         
@@ -196,32 +133,6 @@
                        (now.getMonth() + 1) + '月' + 
                        now.getDate() + '日';
         dateElement.textContent = dateStr;
-
-        // 创建飘落的爱心
-        const heartsContainer = document.getElementById('floatingHearts');
-        const heartSymbols = ['❤️', '💕', '💖', '💗', '💓', '💝'];
-        
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'floating-heart';
-            heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDelay = Math.random() * 2 + 's';
-            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            heartsContainer.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 7000);
-        }
-
-        // 每隔一段时间创建一个爱心
-        setInterval(createHeart, 800);
-        
-        // 初始创建几个爱心
-        for (let i = 0; i < 5; i++) {
-            setTimeout(createHeart, i * 300);
-        }
     </script>
 </body>
 </html>
