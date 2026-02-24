@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 给你的小惊喜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart-container {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: #764ba2;
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .message {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .signature {
+            margin-top: 40px;
+            color: #888;
+            font-style: italic;
+            font-size: 16px;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0;
+            animation: float 6s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .date {
+            color: #999;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .message {
+                font-size: 16px;
+                padding: 0 10px;
+            }
+            
+            .heart-container {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <div class="heart-container">❤️</div>
+        
+        <h1>嘿，你发现了这个小秘密！</h1>
+        
+        <div class="message">
+            <p>当你扫描这个二维码的时候，我的小机器人正在对你摇尾巴呢 🐾</p>
+            
+            <p>我想告诉你：</p>
+            
+            <p class="highlight">遇见你，是我最美好的意外 💫</p>
+            
+            <p>每一次看到你的笑容，我的心跳都会加速一点点。</p>
+            
+            <p>就像这个小机器人一样，我也想一直陪在你身边，给你带来快乐和惊喜。</p>
+            
+            <p>这只是一个小小的开始，未来还有更多美好等着我们一起去创造。</p>
+            
+            <p class="highlight">希望你能喜欢这份用心准备的小礼物 🎁</p>
+        </div>
+        
+        <div class="signature">
+            —— 一个想让你开心的人
+        </div>
+        
+        <div class="date" id="currentDate"></div>
+    </div>
+
+    <script>
+        // 显示当前日期
+        const dateElement = document.getElementById('currentDate');
+        const now = new Date();
+        const dateStr = now.getFullYear() + '年' + 
+                       (now.getMonth() + 1) + '月' + 
+                       now.getDate() + '日';
+        dateElement.textContent = dateStr;
+
+        // 创建飘落的爱心
+        const heartsContainer = document.getElementById('floatingHearts');
+        const heartSymbols = ['❤️', '💕', '💖', '💗', '💓', '💝'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        // 每隔一段时间创建一个爱心
+        setInterval(createHeart, 800);
+        
+        // 初始创建几个爱心
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+    </script>
+</body>
+</html>
