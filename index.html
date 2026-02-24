@@ -43,29 +43,27 @@
             }
         }
 
-        .heart-container {
-            font-size: 80px;
+        .pet-icon {
+            font-size: 48px;
             margin-bottom: 20px;
-            animation: heartbeat 1.5s infinite;
+            animation: bounce 2s infinite;
         }
 
-        @keyframes heartbeat {
+        @keyframes bounce {
             0%, 100% {
-                transform: scale(1);
-            }
-            25% {
-                transform: scale(1.1);
+                transform: translateY(0);
             }
             50% {
-                transform: scale(1);
+                transform: translateY(-10px);
             }
         }
 
         h1 {
             color: #764ba2;
-            font-size: 32px;
-            margin-bottom: 20px;
-            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: normal;
+            line-height: 1.6;
         }
 
         .message {
@@ -92,6 +90,15 @@
             color: #888;
             font-style: italic;
             font-size: 16px;
+        }
+
+        .blessing {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            color: #bbb;
+            font-size: 14px;
+            letter-spacing: 2px;
         }
 
         .floating-hearts {
@@ -158,30 +165,24 @@
     <div class="floating-hearts" id="floatingHearts"></div>
     
     <div class="container">
-        <div class="heart-container">❤️</div>
+        <div class="pet-icon">( 汪！• ᴥ • )</div>
         
-        <h1>你发现了小秘密 🎁</h1>
+        <h1>你好，我是被专属密语唤醒的桌宠</h1>
         
         <div class="message">
-            <p>嘿，当你看到这个页面的时候，小机器人正在对你摇尾巴呢 🐾</p>
+            <p>造我的那个人，是个习惯沉默的笨蛋。</p>
             
-            <p class="highlight">谢谢你愿意花时间来看这个小彩蛋 ✨</p>
+            <p>他本来想在这个网页里，写一堆花里胡哨的代码和浪漫特效来证明自己的技术。</p>
             
-            <p>这个桌宠是我花了一些时间做的，希望它能在你忙碌的时候给你带来一点点快乐。</p>
+            <p>但昨晚，他把那些乱七八糟的特效全删了。</p>
             
-            <p>虽然我们相处的时间不算长，但认识你我觉得很幸运。</p>
+            <p>他摸了摸我的头，只给我下达了最后一行指令：</p>
             
-            <p>你是个很优秀的人，相信你以后一定能做成很多了不起的事。</p>
-            
-            <p class="highlight">愿你前程似锦，一切顺利 🌟</p>
-            
-            <p style="margin-top: 30px; font-size: 16px; color: #999;">
-                P.S. 照顾好自己，别太累了
-            </p>
+            <p class="highlight">"以后就替我陪着她吧。提醒她多喝水，如果工作受了委屈、觉得烦了，就让她对你发脾气。什么特效都不重要，只要她以后每天坐在这个工位上，能开开心心的就好了。"</p>
         </div>
         
-        <div class="signature">
-            —— 一个祝你好运的人
+        <div class="blessing">
+            祝：转正顺利，前程似锦
         </div>
         
         <div class="date" id="currentDate"></div>
