@@ -220,7 +220,7 @@
         </div>
 
         <div class="message-board">
-            <h2>有什么想说的，就写在这里吧</h2>
+            <h2>有什么想说的，就写在这里吧，虽然它不一定会看哈哈哈哈</h2>
             <form id="messageForm">
                 <textarea 
                     id="messageText"
@@ -247,12 +247,10 @@
                        now.getDate() + '日';
         dateElement.textContent = dateStr;
 
-        // 留言板 - 使用 Web3Forms (免费，支持跨域)
         const form = document.getElementById('messageForm');
         const textarea = document.getElementById('messageText');
         const statusDiv = document.getElementById('formStatus');
         
-        // 去 https://web3forms.com 用邮箱获取免费的 Access Key
         const ACCESS_KEY = '4e3b6337-271e-4e58-bcc0-1cd5fc24d0a3';
 
         form.addEventListener('submit', async (e) => {
@@ -286,7 +284,7 @@
                 });
 
                 const result = await response.json();
-                console.log('API返回:', result); // 调试信息
+                console.log('API返回:', result); 
 
                 if (result.success) {
                     statusDiv.className = 'success';
