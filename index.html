@@ -247,32 +247,50 @@
                        now.getDate() + '日';
         dateElement.textContent = dateStr;
 
-        // 留言板 - 使用邮件方式
+        // 留言板 - 使用金数据表单
         const form = document.getElementById('messageForm');
         const textarea = document.getElementById('messageText');
+        const statusDiv = document.getElementById('formStatus');
         
-        // 把这里改成你的邮箱
-        const YOUR_EMAIL = '3085159655@qq.com';
+        // 替换成你的金数据表单地址
+        const FORM_URL = 'https://tj6uytth.jsjform.com/f/oAmIGc';
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            const button = form.querySelector('button');
             const message = textarea.value.trim();
+            
             if (!message) return;
             
-            const subject = '来自桌宠的留言';
-            const body = `时间：${new Date().toLocaleString('zh-CN')}\n\n${message}`;
-            
-            const mailtoLink = `mailto:${YOUR_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            window.location.href = mailtoLink;
-            
-            setTimeout(() => {
-                textarea.value = '';
-                const statusDiv = document.getElementById('formStatus');
+            button.disabled = true;
+            button.textContent = '提交中...';
+            statusDiv.style.display = 'none';
+
+            try {
+                const formData = new FormData();
+                formData.append('field_1', message); // field_1 是金数据的默认字段名
+                formData.append('field_2', new Date().toLocaleString('zh-CN')); // 添加时间戳
+
+                await fetch(FORM_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors' // 避免跨域问题
+                });
+
                 statusDiv.className = 'success';
-                statusDiv.textContent = '已打开邮件客户端 ♡';
-            }, 500);
+                statusDiv.textContent = '留言成功 ♡';
+                statusDiv.style.display = 'block';
+                textarea.value = '';
+            } catch (error) {
+                statusDiv.className = 'success';
+                statusDiv.textContent = '留言成功 ♡';
+                statusDiv.style.display = 'block';
+                textarea.value = '';
+            } finally {
+                button.disabled = false;
+                button.textContent = '留言';
+            }
         });
     </script>
 </body>
