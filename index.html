@@ -286,6 +286,7 @@
                 });
 
                 const result = await response.json();
+                console.log('API返回:', result); // 调试信息
 
                 if (result.success) {
                     statusDiv.className = 'success';
@@ -293,11 +294,15 @@
                     statusDiv.style.display = 'block';
                     textarea.value = '';
                 } else {
-                    throw new Error('提交失败');
+                    statusDiv.className = 'error';
+                    statusDiv.textContent = result.message || '提交失败';
+                    statusDiv.style.display = 'block';
+                    console.error('API错误:', result);
                 }
             } catch (error) {
+                console.error('网络错误:', error);
                 statusDiv.className = 'error';
-                statusDiv.textContent = '提交失败，请稍后再试';
+                statusDiv.textContent = '网络错误: ' + error.message;
                 statusDiv.style.display = 'block';
             } finally {
                 button.disabled = false;
