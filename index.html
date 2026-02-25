@@ -247,13 +247,13 @@
                        now.getDate() + '日';
         dateElement.textContent = dateStr;
 
-        // 留言板 - 使用金数据表单
+        // 留言板 - 使用 Web3Forms (免费，支持跨域)
         const form = document.getElementById('messageForm');
         const textarea = document.getElementById('messageText');
         const statusDiv = document.getElementById('formStatus');
         
-        // 替换成你的金数据表单地址
-        const FORM_URL = 'https://tj6uytth.jsjform.com/f/oAmIGc';
+        // 去 https://web3forms.com 用邮箱获取免费的 Access Key
+        const ACCESS_KEY = '4e3b6337-271e-4e58-bcc0-1cd5fc24d0a3';
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -267,26 +267,38 @@
             button.textContent = '提交中...';
             statusDiv.style.display = 'none';
 
-            try {
-                const formData = new FormData();
-                formData.append('field_1', message); // field_1 是金数据的默认字段名
-                formData.append('field_2', new Date().toLocaleString('zh-CN')); // 添加时间戳
+            const formData = {
+                access_key: ACCESS_KEY,
+                subject: '来自桌宠的留言',
+                message: message,
+                from_name: '桌宠留言板',
+                time: new Date().toLocaleString('zh-CN')
+            };
 
-                await fetch(FORM_URL, {
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
-                    body: formData,
-                    mode: 'no-cors' // 避免跨域问题
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
                 });
 
-                statusDiv.className = 'success';
-                statusDiv.textContent = '留言成功 ♡';
-                statusDiv.style.display = 'block';
-                textarea.value = '';
+                const result = await response.json();
+
+                if (result.success) {
+                    statusDiv.className = 'success';
+                    statusDiv.textContent = '留言成功 ♡';
+                    statusDiv.style.display = 'block';
+                    textarea.value = '';
+                } else {
+                    throw new Error('提交失败');
+                }
             } catch (error) {
-                statusDiv.className = 'success';
-                statusDiv.textContent = '留言成功 ♡';
+                statusDiv.className = 'error';
+                statusDiv.textContent = '提交失败，请稍后再试';
                 statusDiv.style.display = 'block';
-                textarea.value = '';
             } finally {
                 button.disabled = false;
                 button.textContent = '留言';
