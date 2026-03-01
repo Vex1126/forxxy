@@ -40,6 +40,7 @@
             font-family: monospace;
             font-weight: 600;
             box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            white-space: nowrap;
         }
 
         .header {
@@ -53,6 +54,7 @@
             margin-bottom: 25px;
             opacity: 0;
             animation: fadeIn 1s ease-in forwards;
+            white-space: nowrap;
         }
 
         .title {
@@ -239,14 +241,41 @@
             }
             
             .pet-icon {
-                font-size: 28px;
+                font-size: 22px;
+                letter-spacing: -1px;
             }
             
             .repo-badge {
-                font-size: 10px;
-                padding: 5px 10px;
+                font-size: 9px;
+                padding: 4px 8px;
                 top: 12px;
                 right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .title {
+                font-size: 16px;
+            }
+            
+            .content {
+                font-size: 14px;
+            }
+            
+            .pet-icon {
+                font-size: 18px;
+                letter-spacing: -1px;
+            }
+            
+            .repo-badge {
+                font-size: 8px;
+                padding: 3px 6px;
+                top: 10px;
+                right: 12px;
             }
         }
     </style>
